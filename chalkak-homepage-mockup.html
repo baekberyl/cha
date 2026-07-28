@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>Chalkak Collective — Homepage Mockup</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --klein:#1731C4;
+    --klein-deep:#0E1F8C;
+    --warm:#FAF6EC;
+    --warm-card:#F3EDDD;
+    --ink:#141311;
+    --ink-soft:#5B584E;
+    --line:rgba(20,19,17,0.14);
+    --hit:#E9FF63;
+    --pink:#EB459F;
+    --mint:#CCEE76;
+    --amber:#EEB150;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--warm);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .mono{font-family:'Space Mono', monospace;}
+  .disp{font-family:'Space Grotesk', sans-serif;}
+
+  /* ---------- topbar ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 40px;
+    background:rgba(250,246,236,0.86);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar .logo{
+    font-family:'Space Mono', monospace;
+    font-weight:700; font-size:15px; letter-spacing:0.04em;
+    display:flex; align-items:center; gap:8px;
+  }
+  .topbar .logo .dot{width:8px;height:8px;background:var(--klein);border-radius:50%;display:inline-block;}
+  .topbar nav{display:flex; gap:32px; font-size:13px; font-family:'Space Mono',monospace;}
+  .topbar nav a{color:var(--ink); text-decoration:none; letter-spacing:0.02em; position:relative;}
+  .topbar nav a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:1px;background:var(--klein);transition:width .25s;}
+  .topbar nav a:hover::after{width:100%;}
+  .topbar .cta{
+    font-family:'Space Mono',monospace; font-size:12px;
+    border:1px solid var(--ink); padding:8px 14px;
+    text-decoration:none; color:var(--ink);
+    display:flex; align-items:center; gap:6px;
+  }
+  .topbar .cta:hover{background:var(--ink); color:var(--warm);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:88px 40px 60px;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:40px;
+    align-items:center;
+    max-width:1360px;
+    margin:0 auto;
+  }
+  .exif{
+    font-family:'Space Mono',monospace;
+    font-size:11px; letter-spacing:0.08em;
+    color:var(--ink-soft);
+    display:flex; gap:20px; flex-wrap:wrap;
+    margin-bottom:26px;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:10px 0;
+  }
+  .exif span b{color:var(--klein); font-weight:700;}
+
+  .hero h1{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:clamp(40px, 5.4vw, 74px);
+    line-height:0.98;
+    letter-spacing:-0.02em;
+    color:var(--ink);
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--klein);
+  }
+  .hero p.lead{
+    margin-top:22px;
+    font-size:16px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    max-width:460px;
+  }
+  .hero-actions{margin-top:34px; display:flex; gap:14px; align-items:center;}
+  .btn-primary{
+    background:var(--klein); color:var(--warm);
+    font-family:'Space Mono',monospace; font-size:13px;
+    padding:14px 22px; text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px;
+    border:1px solid var(--klein);
+  }
+  .btn-primary:hover{background:var(--klein-deep);}
+  .btn-ghost{
+    font-family:'Space Mono',monospace; font-size:13px;
+    color:var(--ink); text-decoration:none;
+    border-bottom:1px solid var(--ink);
+    padding-bottom:2px;
+  }
+
+  /* ---------- viewfinder / ascii signature ---------- */
+  .viewfinder{
+    position:relative;
+    aspect-ratio: 4/5;
+    border:1px solid var(--ink);
+    background:
+      linear-gradient(var(--line) 1px, transparent 1px) 0 0/100% 12.5%,
+      linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0/12.5% 100%,
+      var(--warm-card);
+    overflow:hidden;
+  }
+  .viewfinder pre{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Mono',monospace;
+    font-size:9px; line-height:1.05;
+    color:var(--klein);
+    white-space:pre;
+    opacity:0.92;
+    letter-spacing:0.01em;
+  }
+  .corner{position:absolute; width:22px; height:22px; border-color:var(--ink);}
+  .corner.tl{top:14px; left:14px; border-top:2px solid; border-left:2px solid;}
+  .corner.tr{top:14px; right:14px; border-top:2px solid; border-right:2px solid;}
+  .corner.bl{bottom:14px; left:14px; border-bottom:2px solid; border-left:2px solid;}
+  .corner.br{bottom:14px; right:14px; border-bottom:2px solid; border-right:2px solid;}
+
+  .scanline{
+    position:absolute; left:0; right:0; height:2px;
+    background:linear-gradient(90deg, transparent, var(--hit), transparent);
+    animation:scan 3.4s linear infinite;
+    box-shadow:0 0 12px 1px var(--hit);
+  }
+  @keyframes scan{
+    0%{top:6%;} 50%{top:92%;} 100%{top:6%;}
+  }
+
+  .tag{
+    position:absolute;
+    font-family:'Space Mono',monospace;
+    font-size:10px;
+    background:var(--ink);
+    color:var(--hit);
+    padding:3px 7px;
+    letter-spacing:0.03em;
+  }
+  .tag.a{top:16%; left:10%;}
+  .tag.b{bottom:20%; right:8%; background:var(--klein); color:var(--warm);}
+
+  .viewfinder-caption{
+    position:absolute; left:14px; bottom:14px;
+    font-family:'Space Mono',monospace; font-size:10px;
+    color:var(--ink-soft);
+    background:var(--warm);
+    padding:2px 6px;
+  }
+
+  /* ---------- rooms ---------- */
+  .section{
+    max-width:1360px; margin:0 auto;
+    padding:100px 40px;
+  }
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    margin-bottom:44px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:20px;
+    flex-wrap:wrap; gap:16px;
+  }
+  .eyebrow{
+    font-family:'Space Mono',monospace; font-size:12px;
+    letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--klein); margin-bottom:10px;
+  }
+  .section-head h2{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:clamp(28px,3.4vw,42px);
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .section-head .sub{
+    font-family:'Space Mono',monospace; font-size:12px;
+    color:var(--ink-soft); max-width:280px; text-align:right;
+  }
+
+  .rooms{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:var(--ink);
+    border:1px solid var(--ink);
+  }
+  .room{
+    background:var(--warm-card);
+    padding:26px 22px 30px;
+    min-height:340px;
+    position:relative;
+    display:flex; flex-direction:column; justify-content:space-between;
+    transition:background .3s;
+    cursor:pointer;
+    text-decoration:none;
+    color:inherit;
+  }
+  .room:hover{background:var(--warm);}
+  .room .rid{font-family:'Space Mono',monospace; font-size:11px; color:var(--ink-soft);}
+  .room h3{
+    font-family:'Space Grotesk',sans-serif; font-weight:600;
+    font-size:22px; margin-top:70px; line-height:1.2;
+  }
+  .room .swatch{
+    position:absolute; top:26px; right:22px;
+    width:14px; height:14px; border-radius:50%;
+  }
+  .room .desc{
+    font-size:12.5px; color:var(--ink-soft); margin-top:10px; line-height:1.6;
+  }
+  .room .frame{
+    margin-top:20px;
+    font-family:'Space Mono',monospace; font-size:10px;
+    display:flex; align-items:center; gap:6px; color:var(--ink);
+    opacity:0; transform:translateY(4px);
+    transition:all .25s;
+  }
+  .room:hover .frame{opacity:1; transform:translateY(0);}
+  .room .frame::before{content:"["; }
+  .room .frame::after{content:"]"; }
+
+  .r1 .swatch{background:#B7C7E8;}
+  .r2 .swatch{background:var(--mint);}
+  .r3 .swatch{background:var(--pink);}
+  .r4 .swatch{background:var(--amber);}
+
+  /* ---------- story (klein inverted) ---------- */
+  .story{
+    background:var(--klein);
+    color:var(--warm);
+    padding:110px 40px;
+  }
+  .story-inner{
+    max-width:1360px; margin:0 auto;
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:center;
+  }
+  .story .eyebrow{color:var(--hit);}
+  .story h2{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:clamp(26px,3vw,38px);
+    font-weight:600; line-height:1.25;
+    letter-spacing:-0.01em;
+  }
+  .story p{
+    margin-top:18px; font-size:15px; line-height:1.8;
+    color:rgba(250,246,236,0.78); max-width:480px;
+  }
+  .terminal{
+    background:rgba(0,0,0,0.28);
+    border:1px solid rgba(250,246,236,0.25);
+    padding:22px 24px;
+    font-family:'Space Mono',monospace;
+    font-size:12.5px; line-height:1.9;
+    color:var(--mint);
+  }
+  .terminal .bar{display:flex; gap:6px; margin-bottom:16px;}
+  .terminal .bar span{width:9px; height:9px; border-radius:50%; background:rgba(250,246,236,0.3);}
+  .terminal .l1{color:rgba(250,246,236,0.5);}
+  .terminal .l2{color:var(--warm);}
+  .terminal .cursor{display:inline-block; width:7px; height:13px; background:var(--hit); vertical-align:middle; animation:blink 1s step-end infinite;}
+  @keyframes blink{50%{opacity:0;}}
+
+  /* ---------- passport + postcard preview ---------- */
+  .split{
+    display:grid; grid-template-columns:1fr 1fr; gap:1px;
+    background:var(--ink); border:1px solid var(--ink);
+  }
+  .split-card{
+    background:var(--warm); padding:46px 40px; min-height:380px;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .passport-mini{
+    border:1px solid var(--ink); padding:20px;
+    background:var(--warm-card);
+    font-family:'Space Mono',monospace;
+  }
+  .passport-mini .row{display:flex; justify-content:space-between; font-size:10px; color:var(--ink-soft); margin-bottom:14px;}
+  .passport-mini .num{font-size:19px; letter-spacing:0.06em; color:var(--klein); font-weight:700;}
+  .passport-mini .stamp{
+    margin-top:16px; display:inline-flex; align-items:center; gap:6px;
+    border:1px solid var(--klein); color:var(--klein);
+    padding:5px 10px; font-size:10px; transform:rotate(-3deg);
+  }
+  .postcard-mini{
+    border:1px solid var(--ink); background:var(--warm-card);
+    padding:20px; position:relative;
+  }
+  .postcard-mini .stamp2{
+    position:absolute; top:16px; right:16px;
+    width:38px; height:46px; border:1px dashed var(--ink-soft);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Mono',monospace; font-size:8px; color:var(--ink-soft);
+    text-align:center;
+  }
+  .postcard-mini p{font-family:'Space Mono',monospace; font-size:12px; line-height:1.7; max-width:75%;}
+  .postcard-mini .sig{margin-top:14px; font-family:'Space Grotesk',sans-serif; font-style:italic; font-size:13px; color:var(--klein);}
+
+  .split-card h3{font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:600; margin-bottom:6px;}
+  .split-card .cap{font-family:'Space Mono',monospace; font-size:11px; color:var(--ink-soft); margin-bottom:22px;}
+  .split-card a{
+    align-self:flex-start;
+    font-family:'Space Mono',monospace; font-size:12px;
+    margin-top:22px; text-decoration:none; color:var(--ink);
+    border-bottom:1px solid var(--ink); padding-bottom:2px;
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:40px; max-width:1360px; margin:0 auto;
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:'Space Mono',monospace; font-size:11px; color:var(--ink-soft);
+    flex-wrap:wrap; gap:12px;
+  }
+
+  @media (max-width:900px){
+    .hero{grid-template-columns:1fr;}
+    .rooms{grid-template-columns:1fr 1fr;}
+    .story-inner{grid-template-columns:1fr;}
+    .split{grid-template-columns:1fr;}
+    .topbar nav{display:none;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="logo"><span class="dot"></span>CHALKAK COLLECTIVE</div>
+    <nav>
+      <a href="#rooms">ROOMS</a>
+      <a href="#story">STORY</a>
+      <a href="#passport">PASSPORT</a>
+      <a href="#postcards">POSTCARDS</a>
+      <a href="chalkak-web-trial-mockup.html">TRY ONLINE</a>
+      <a href="chalkak-tob-portal-mockup.html">B2B</a>
+    </nav>
+    <a class="cta" href="chalkak-room-detail-mockup.html#pkg">预定 / BOOK →</a>
+  </div>
+
+  <section class="hero">
+    <div>
+      <div class="exif">
+        <span>ROOMS <b>04</b></span>
+        <span>EST. <b>TECH LAB → STUDIO</b></span>
+        <span>LOCATION <b>INCHEON</b></span>
+        <span>STATUS <b>OPEN</b></span>
+      </div>
+      <h1 class="disp">回忆，<br>是可以<em>被制造</em>的。</h1>
+      <p class="lead">Chalkak Collective 是一个由拍照机器组成的世界。四个房间，四种造相方式——我们造机器，你造回忆。</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#rooms">进入四个空间 →</a>
+        <a class="btn-ghost" href="#story">我们的故事</a>
+      </div>
+    </div>
+
+    <div class="viewfinder">
+      <div class="corner tl"></div>
+      <div class="corner tr"></div>
+      <div class="corner bl"></div>
+      <div class="corner br"></div>
+      <div class="scanline"></div>
+      <div class="tag a">FACE · 98%</div>
+      <div class="tag b">ROOM: K-PHOTO LAB</div>
+      <pre class="mono">
+      .--.
+     /    \
+    | O  O |
+    |  ..  |
+     \____/
+    CHALKAK
+   [ SCANNING ]
+      </pre>
+      <div class="viewfinder-caption">frame_0182.raw</div>
+    </div>
+  </section>
+
+  <section class="section" id="rooms">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">The Four Rooms</div>
+        <h2 class="disp">一个世界，四种风格</h2>
+      </div>
+      <div class="sub">每个空间独立成像风格，但共享同一套取片与护照系统。</div>
+    </div>
+    <div class="rooms">
+      <a class="room r1" href="chalkak-room-detail-mockup.html">
+        <div class="rid mono">ROOM/01</div>
+        <div class="swatch"></div>
+        <h3 class="disp">Vintage Room</h3>
+        <div class="desc">胶片颗粒、暖调滤镜，把此刻拍成一张旧相片。</div>
+        <div class="frame mono">ENTER ROOM</div>
+      </a>
+      <a class="room r2" href="chalkak-room-detail-mockup.html">
+        <div class="rid mono">ROOM/02</div>
+        <div class="swatch"></div>
+        <h3 class="disp">Cute DIY &amp; Meme</h3>
+        <div class="desc">贴纸、手绘边框、表情包模板，越离谱越好。</div>
+        <div class="frame mono">ENTER ROOM</div>
+      </a>
+      <a class="room r3" href="chalkak-room-detail-mockup.html">
+        <div class="rid mono">ROOM/03</div>
+        <div class="swatch"></div>
+        <h3 class="disp">K-Photo Lab</h3>
+        <div class="desc">韩式四格自拍，柔光、美颜、精致边框一次搞定。</div>
+        <div class="frame mono">ENTER ROOM</div>
+      </a>
+      <a class="room r4" href="chalkak-room-detail-mockup.html">
+        <div class="rid mono">ROOM/04</div>
+        <div class="swatch"></div>
+        <h3 class="disp">Self Portrait Atelier</h3>
+        <div class="desc">如同肖像画室，安静的光线，只留下你本来的样子。</div>
+        <div class="frame mono">ENTER ROOM</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="story" id="story">
+    <div class="story-inner">
+      <div>
+        <div class="eyebrow mono">Our Origin</div>
+        <h2 class="disp">我们曾经，<br>只造拍照的机器。</h2>
+        <p>在成为一个可以走进去体验的品牌之前，Chalkak 是一家做拍照机器的科技公司。我们懂传感器、懂算法、懂快门背后的一切——现在，我们想把这套技术，做成一个可以被触摸、被拍摄、被带走的世界。</p>
+      </div>
+      <div class="terminal">
+        <div class="bar"><span></span><span></span><span></span></div>
+        <div class="l1">$ chalkak --history</div>
+        <div>&gt; 2019 build camera_core.engine</div>
+        <div>&gt; 2021 ship hardware to 40+ studios</div>
+        <div class="l2">&gt; 2026 open_world("Chalkak Collective")</div>
+        <div>&gt; memory.status = "in progress"<span class="cursor"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:100px;" id="passport">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">My Passport / Postcards</div>
+        <h2 class="disp">带走的，不只是照片</h2>
+      </div>
+      <div class="sub">扫码即可把照片存进你的护照，也欢迎在明信片墙留下一句话。</div>
+    </div>
+    <div class="split">
+      <div class="split-card">
+        <div>
+          <h3 class="disp">我的护照</h3>
+          <div class="cap">MY PASSPORT — 每次到访自动盖一枚章</div>
+          <div class="passport-mini">
+            <div class="row"><span>CHALKAK PASSPORT</span><span>NO.</span></div>
+            <div class="num">CHK · 2026 · 000217</div>
+            <div class="stamp">✓ K-PHOTO LAB · VISITED</div>
+          </div>
+        </div>
+        <a href="chalkak-passport-detail-mockup.html">查看护照详情 →</a>
+      </div>
+      <div class="split-card" id="postcards">
+        <div>
+          <h3 class="disp">明信片墙</h3>
+          <div class="cap">POSTCARDS — 来自顾客与合作伙伴的留言</div>
+          <div class="postcard-mini">
+            <div class="stamp2">CHALKAK<br>1st CLASS</div>
+            <p>“在 Vintage Room 拍到了跟妈妈年轻时一样的照片。”</p>
+            <div class="sig">— 一位常客</div>
+          </div>
+        </div>
+        <a href="chalkak-postcards-mockup.html">写一张明信片给我们 →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>© 2026 CHALKAK COLLECTIVE — MEMORIES, MANUFACTURED.</div>
+    <div>INCHEON, KR · ROOMS 01–04 · OPEN DAILY</div>
+  </footer>
+
+</body>
+</html>
